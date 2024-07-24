@@ -14,5 +14,11 @@ Rails.application.routes.draw do
       put 'admin/categories/:id', to: 'admin/categories#update'
       delete 'admin/categories/:id', to: 'admin/categories#destroy'
 
+      # Product management routes 
+      post 'admin/products', to: 'admin/products#create'
+      get 'admin/products', to: 'admin/products#index'
+      put 'admin/products/:id', to: 'admin/products#update'
+      delete 'admin/products/:id', to: 'admin/products#destroy'
+
   end
 end
