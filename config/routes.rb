@@ -20,5 +20,7 @@ Rails.application.routes.draw do
       put 'admin/products/:id', to: 'admin/products#update'
       delete 'admin/products/:id', to: 'admin/products#destroy'
 
+      #Order route
+      post 'orders', to: 'orders#create'
   end
 end
