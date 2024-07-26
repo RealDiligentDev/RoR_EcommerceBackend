@@ -11,9 +11,10 @@ class JsonWebToken
   def self.decode(token)
     return if BlacklistedToken.exists?(token: token)
 
-    decoded = JWT.decode(token, SECRET_KEY)[0]
-    HashWithIndifferentAccess.new(decoded)
-  rescue
+    body = JWT.decode(token, SECRET_KEY)[0]
+    HashWithIndifferentAccess.new body
+  rescue JWT::DecodeError => e 
+    Rails.logger.error "JWT decode error: #{e.message}"
     nil
   end
 end
