@@ -15,7 +15,7 @@ module Api
       user = User.find_by(email: params[:email])
       if user&.authenticate(params[:password])
         token = JsonWebToken.encode(user_id: user.id)
-        render json: { token: token }, status: :ok
+        render json: { user: user.id, token: token }, status: :ok
       else
         render json: { errors: 'Invalid email or password' }, status: :unauthorized
       end
@@ -32,9 +32,13 @@ module Api
     end
 
     def recovery_key
-      recovery_key = generate_recovery_key
-
-      render json: { recoveryKey: recovery_key }, status: :ok
+      user = User.find_by(email: params[:email])
+      if user
+        recovery_key = generate_recovery_key(user)
+        render json: { recoveryKey: recovery_key }, status: :ok
+      else
+        render json: { errors: 'User not found' }, status: :not_found
+      end
     end
 
     def forget_password
@@ -55,9 +59,9 @@ module Api
 
     private
 
-    def generate_recovery_key
+    def generate_recovery_key(user)
       key = SecureRandom.hex(16)
-      RecoveryKey.create(user: User.find_by(email: params[:email]), key: key)
+      RecoveryKey.create(user: user, key: key)
       key
     end
 
