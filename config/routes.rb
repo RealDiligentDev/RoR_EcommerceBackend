@@ -22,5 +22,8 @@ Rails.application.routes.draw do
 
       #Order route
       post 'orders', to: 'orders#create'
+      get 'orders/:id', to: 'orders#show'
+      put 'admin/orders/:id/status', to: 'admin/orders#update_status'
+      get 'admin/orders', to: 'admin/orders#index'
   end
 end
