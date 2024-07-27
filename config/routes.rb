@@ -21,6 +21,9 @@ Rails.application.routes.draw do
     put 'admin/products/:id', to: 'admin/products#update'
     delete 'admin/products/:id', to: 'admin/products#destroy'
 
+    # Admin Analytics routes
+    get 'admin/analytics/sales', to: 'admin/analytics#sales'
+
     # Order route
     post 'orders', to: 'orders#create'
     get 'orders/:id', to: 'orders#show'
