@@ -20,10 +20,14 @@ Rails.application.routes.draw do
       put 'admin/products/:id', to: 'admin/products#update'
       delete 'admin/products/:id', to: 'admin/products#destroy'
 
-      #Order route
+      # Order route
       post 'orders', to: 'orders#create'
       get 'orders/:id', to: 'orders#show'
       put 'admin/orders/:id/status', to: 'admin/orders#update_status'
       get 'admin/orders', to: 'admin/orders#index'
+
+      # Profile route
+      get 'profile', to: 'profile#show'
+      put 'profile', to: 'profile#update'
   end
 end
