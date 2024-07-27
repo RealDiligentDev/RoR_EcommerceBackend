@@ -2,6 +2,8 @@ class Product < ApplicationRecord
   belongs_to :category
   has_many :reviews, dependent: :destroy
 
+  paginates_per 10
+  
   validates :name, presence: true
   validates :description, presence: true
   validates :quantity, numericality: { only_integer: true, greater_than_or_equal_to: 0 }

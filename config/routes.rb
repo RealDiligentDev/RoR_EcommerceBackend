@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get 'admin/categories', to: 'admin/categories#index'
     put 'admin/categories/:id', to: 'admin/categories#update'
     delete 'admin/categories/:id', to: 'admin/categories#destroy'
+    get 'categories', to: 'categories#index'
 
     # Product management routes 
     post 'admin/products', to: 'admin/products#create'
@@ -33,5 +34,14 @@ Rails.application.routes.draw do
     # Review routes
     post 'reviews', to: 'reviews#create'
     get 'reviews/:product_id', to: 'reviews#index'
+
+    # Product browsing routes
+    get 'products', to: 'products#index'
+    get 'products/:id', to: 'products#show'
+
+    # Cart routes
+    post 'cart', to: 'cart#create'
+    get 'cart', to: 'cart#index'
+    delete 'cart/:productId', to: 'cart#destroy'
   end
 end
